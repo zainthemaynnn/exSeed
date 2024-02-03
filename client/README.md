@@ -1,4 +1,4 @@
-# exseed
+# exSeed
 
 A new Flutter project.
 
