@@ -15,12 +15,8 @@ final List<String> options = <String>[
   'Entry Y', 'Entry Z'
   ];
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Recommendations extends StatelessWidget {
+  const Recommendations({super.key, required String title});
 
   @override
   Widget build(BuildContext context) {
@@ -42,10 +38,6 @@ class MyApp extends StatelessWidget {
           },
         )
       )
-
-
-
-
     );
   }
 }
