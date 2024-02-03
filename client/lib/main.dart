@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'exSeed Main Page'),
     );
   }
 }
@@ -59,11 +59,11 @@ class _MyHomePageState extends State<MyHomePage> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'My crops',
+            label: 'My Crops',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.business),
-            label: 'Soil health',
+            label: 'Soil Health',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.school),
