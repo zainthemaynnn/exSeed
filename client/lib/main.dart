@@ -58,20 +58,29 @@ class _MyHomePageState extends State<MyHomePage> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'My crops',
+            icon: Icon(Icons.nature_outlined),
+            label: 'My Crops',
+            backgroundColor: Color(0xFFA1887F),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Soil health',
+            icon: Icon(Icons.checklist_outlined),
+            label: 'Tasks',
+            backgroundColor: Color(0xFFA1887F),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
+            icon: Icon(Icons.monitor_heart_outlined),
+            label: 'Soil Health',
+            backgroundColor: Color(0xFFA1887F),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.interests_outlined),
             label: 'Recommendations',
+            backgroundColor: Color(0xFFA1887F),
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Colors.teal,
+        unselectedItemColor: Colors.white,
         onTap: _onItemTapped,
       ),
     );
