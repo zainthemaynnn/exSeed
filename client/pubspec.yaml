@@ -42,6 +42,7 @@ dependencies:
   pie_chart: ^5.4.0
   firebase_core: ^2.25.3
   animations: ^2.0.11
+  cloud_firestore: ^4.15.3
 
 dev_dependencies:
   flutter_test:
