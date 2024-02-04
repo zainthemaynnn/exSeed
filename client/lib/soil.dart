@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class Soil extends StatefulWidget {
-  final double progress;
+  final SoilOutput output;
 
-  const Soil({super.key, required this.progress});
+  const Soil({super.key, required this.output});
 
   @override
   _Soil createState() => _Soil();
@@ -16,34 +16,31 @@ class _Soil extends State<Soil> {
   @override
   void initState() {
     super.initState();
-    _progress = widget.progress;
+    _progress = widget.output.progress;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          height: 40,
+    return Column(children: [
+      Container(
+        height: 40,
+      ),
+      Center(
+        child: Text(
+          'Soil Health: ${_progress.toStringAsFixed(0)}%',
+          style: const TextStyle(
+              fontSize: 36,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+              overflow: TextOverflow.ellipsis),
         ),
-    
-        Center(
-          child: Text('Soil Health: ${_progress.toStringAsFixed(0)}%', style: const TextStyle(
-            fontSize: 36,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-            overflow: TextOverflow.ellipsis
-          ),),
-        ),
-
-        Container(
-          height: 40,
-        ),
-
-        Expanded(
-          child: SfRadialGauge(
-            axes: <RadialAxis>[
-              RadialAxis(
+      ),
+      Container(
+        height: 40,
+      ),
+      Center(
+          child: SfRadialGauge(axes: <RadialAxis>[
+            RadialAxis(
                 minimum: 0,
                 maximum: 100,
                 showLabels: false,
@@ -64,23 +61,32 @@ class _Soil extends State<Soil> {
                 ],
                 annotations: const <GaugeAnnotation>[
                   GaugeAnnotation(
-                    positionFactor: 0.1,
-                    angle: 90,
-                    /*widget: Text(
-                      '${_progress.toStringAsFixed(0)}%',
-                      style: const TextStyle(fontSize: 32, color: Colors.black),
-                    ),*/
-                    widget: Image(
-                      image: AssetImage('assets/logo-t.png'),
-                      width: 300,
-                      height: 300,)
-                  )
-                ]
-              )
-            ]
-          )
-        ),
-      ]
-    );
+                      positionFactor: 0.1,
+                      angle: 90,
+                      /*widget: Text(
+                          '${_progress.toStringAsFixed(0)}%',
+                          style: const TextStyle(fontSize: 32, color: Colors.black),
+                        ),*/
+                      widget: Image(
+                        image: AssetImage('assets/logo-t.png'),
+                        width: 300,
+                        height: 300,
+                      ))
+                ])
+          ]),
+      ),
+      Text(
+              "Nitrogen: ${widget.output.N}\nPhosphorus: ${widget.output.P}\nPotassium: ${widget.output.K}")
+    ]);
   }
+}
+
+class SoilOutput {
+  final double N, P, K;
+  final double progress;
+  SoilOutput(
+      {required this.N,
+      required this.P,
+      required this.K,
+      required this.progress});
 }
