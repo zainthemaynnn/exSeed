@@ -69,8 +69,8 @@ class _Soil extends State<Soil> {
                         ),*/
                       widget: Image(
                         image: AssetImage('assets/logo-t.png'),
-                        width: 300,
-                        height: 300,
+                        width: 200,
+                        height: 200,
                       ))
                 ])
           ]),
