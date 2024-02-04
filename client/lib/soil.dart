@@ -29,7 +29,7 @@ class _Soil extends State<Soil> {
     
         Center(
           child: Text('Soil Health: ${_progress.toStringAsFixed(0)}%', style: const TextStyle(
-            fontSize: 24,
+            fontSize: 36,
             fontWeight: FontWeight.bold,
             color: Colors.black,
             overflow: TextOverflow.ellipsis
@@ -72,8 +72,8 @@ class _Soil extends State<Soil> {
                     ),*/
                     widget: Image(
                       image: AssetImage('assets/logo-t.png'),
-                      width: 400,
-                      height: 400,)
+                      width: 300,
+                      height: 300,)
                   )
                 ]
               )
