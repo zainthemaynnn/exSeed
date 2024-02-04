@@ -65,13 +65,39 @@ class _MyHomePageState extends State<MyHomePage> {
     double N = 0.0;
     double P = 0.0;
     double K = 0.0;
-    for (var cell in cells) {
+    double score = 100.0;
+    var major = 'x';
+
+    for (int i = 0; i < cells.length; ++i) {
+      var cell = cells[i];
+      var n, p, k;
       cell.amounts.forEach((crop, amount) {
         var nutrients = nutrientsTable.firstWhere((e) => e.ty == crop);
-        N += nutrients.nitrogen * amount;
-        P += nutrients.phosphorus * amount;
-        K += nutrients.potassium * amount;
+        n += nutrients.nitrogen * amount;
+        p += nutrients.phosphorus * amount;
+        k += nutrients.potassium * amount;
       });
+
+      N += n;
+      P += p;
+      K += k;
+
+      if (n > p && n > k) {
+        if (major == 'n') {
+          score -= 10;
+        }
+        major = 'n';
+      } else if (p > k) {
+        if (major == 'p') {
+          score -= 10;
+        }
+        major = 'p';
+      } else {
+        if (major == 'k') {
+          score -= 10;
+        }
+        major = 'k';
+      }
     }
 
     return SoilOutput(
