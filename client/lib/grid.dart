@@ -102,8 +102,6 @@ enum Crop {
   chickPeas,
   mustardSeeds,
   frenchBeans,
-  npk421,
-  npk222,
 }
 
 class CropNutrients {

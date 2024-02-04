@@ -73,9 +73,9 @@ class _MyHomePageState extends State<MyHomePage> {
       var n, p, k;
       cell.amounts.forEach((crop, amount) {
         var nutrients = nutrientsTable.firstWhere((e) => e.ty == crop);
-        n += nutrients.nitrogen * amount;
-        p += nutrients.phosphorus * amount;
-        k += nutrients.potassium * amount;
+        n = nutrients.nitrogen * amount;
+        p = nutrients.phosphorus * amount;
+        k = nutrients.potassium * amount;
       });
 
       N += n;
@@ -104,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
       N: N,
       P: P,
       K: K,
-      progress: 100.0,
+      progress: score,
     );
   }
 

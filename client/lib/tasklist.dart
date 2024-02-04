@@ -22,10 +22,6 @@ class TaskList extends StatefulWidget {
         return "Mustard Seeds";
       case Crop.frenchBeans:
         return "French Beans";
-      case Crop.npk421:
-        return "NPK 4:2:1 fertilizer";
-      case Crop.npk222:
-        return "NPK 2:2:2 fertilizer";
     }
   }
 
