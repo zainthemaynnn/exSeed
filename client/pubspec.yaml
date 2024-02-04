@@ -29,7 +29,8 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   flutter:
-    assets: assets/logo.png
+    assets: 
+    - assets/logo.png
     
     sdk: flutter
   syncfusion_flutter_gauges: ^24.2.3
