@@ -1,52 +1,119 @@
 import 'package:flutter/material.dart';
+import 'package:pie_chart/pie_chart.dart';
 
-class TaskList extends StatelessWidget {
- @override
+class TaskList extends StatefulWidget {
+  const TaskList({super.key});
+
+  @override
+  State<TaskList> createState() => _TaskListState();
+}
+
+enum Crop {
+  rice,
+  cotton,
+  sugarCane,
+  wheat,
+}
+
+class _TaskListState extends State<TaskList> {
+  late Map<Crop, double> _amounts;
+
+  _TaskListState() {
+    _amounts =
+        Map.fromIterables(Crop.values, List.filled(Crop.values.length, 0));
+  }
+
+  void _onItemAmountSet(double amount, Crop crop) {
+    setState(() {
+      _amounts.addEntries({crop: amount}.entries);
+    });
+  }
+
+  String cropName(Crop crop) {
+    switch (crop) {
+      case Crop.rice:
+        return "Rice";
+      case Crop.cotton:
+        return "Cotton";
+      case Crop.sugarCane:
+        return "Sugar Cane";
+      case Crop.wheat:
+        return "Wheat";
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    // Create a Scaffold widget to provide a default app bar and body
     return Column(
-        children: [
-          // Add a Container widget with a fixed height to create some space between the app bar and the "Task List" heading
-          Container(
-            height: 50,
+      children: [
+        Container(
+          height: 50,
+        ),
+        const Text(
+          'Monthly Crop Choices',
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
           ),
-          // Center the "Task List" heading both horizontally and vertically
-          Center(
-            child: Text(
-              'Monthly Crop Choices',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          // Use an Expanded widget to fill the available space below the "Task List" heading
-          Expanded(
-            // Use a ListView.builder widget to create a list of milestones
-            child: ListView.builder(
-              // Set the number of milestones to create
-              itemCount: 12,
-              // Create each milestone using the itemBuilder callback
-              itemBuilder: (context, index) {
-                return InkWell(
-                  // Add code here to expand/collapse the list of tasks for this milestone
-                  onTap: () {
-                    // TODO: Add code to expand/collapse the list of tasks
-                  },
-                  // Use a ListTile widget to create a standard layout for a list item
-                  child: ListTile(
-                    // Use a CircleAvatar widget to display the milestone number
-                    leading: CircleAvatar(
-                      child: Text('${index + 1}'),
-                    ),
-                    // Use a Text widget to display the milestone name
-                    title: Text('Milestone ${index + 1}'),
+        ),
+        PieChart(
+          dataMap: {
+            for (var crop in Crop.values) cropName(crop): _amounts[crop]!
+          },
+          chartRadius: 180.0,
+        ),
+        Expanded(
+          child: ListView.builder(
+            itemCount: Crop.values.length,
+            itemBuilder: (context, index) {
+              return InkWell(
+                onTap: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        double amount = _amounts[Crop.values[index]]!;
+                        return AlertDialog(
+                          title: const Text("Enter area (acres)"),
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              TextField(
+                                autofocus: true,
+                                onChanged: (value) {
+                                  var tmp = double.tryParse(value);
+                                  if (tmp != null) {
+                                    amount = tmp;
+                                  }
+                                },
+                                onSubmitted: (value) {
+                                  _onItemAmountSet(amount, Crop.values[index]);
+                                  Navigator.pop(context);
+                                },
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  _onItemAmountSet(amount, Crop.values[index]);
+                                  Navigator.pop(context);
+                                },
+                                child: const Text("Submit"),
+                              ),
+                            ],
+                          ),
+                        );
+                      });
+                },
+                child: ListTile(
+                  leading: CircleAvatar(
+                    child: Text('${index + 1}'),
                   ),
-                );
-              },
-            ),
+                  title: Text(cropName(Crop.values[index])),
+                  trailing: Text("${_amounts[Crop.values[index]]} Acres"),
+                ),
+              );
+            },
           ),
-        ],
-      );
+        ),
+      ],
+    );
   }
 }
