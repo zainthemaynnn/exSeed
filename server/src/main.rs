@@ -1,3 +1,5 @@
+mod points;
+
 use axum::{routing::get, Router};
 
 #[tokio::main]

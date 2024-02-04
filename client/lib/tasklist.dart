@@ -1,49 +1,53 @@
+import 'package:exseed/grid.dart';
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
 
 class TaskList extends StatefulWidget {
-  const TaskList({super.key});
+  late Map<Crop, double> amounts;
+  void Function(Map<Crop, double>) onRatioUpdate;
 
-  @override
-  State<TaskList> createState() => _TaskListState();
-}
-
-enum Crop {
-  rice,
-  cotton,
-  sugarCane,
-  wheat,
-}
-
-class _TaskListState extends State<TaskList> {
-  late Map<Crop, double> _amounts;
-
-  _TaskListState() {
-    _amounts =
-        Map.fromIterables(Crop.values, List.filled(Crop.values.length, 0));
-  }
-
-  void _onItemAmountSet(double amount, Crop crop) {
-    setState(() {
-      _amounts.addEntries({crop: amount}.entries);
-    });
-  }
+  TaskList({super.key, required this.amounts, required this.onRatioUpdate});
 
   String cropName(Crop crop) {
     switch (crop) {
       case Crop.rice:
         return "Rice";
-      case Crop.cotton:
-        return "Cotton";
+      case Crop.maize:
+        return "Maize";
       case Crop.sugarCane:
         return "Sugar Cane";
-      case Crop.wheat:
-        return "Wheat";
+      case Crop.chickPeas:
+        return "Chick Peas";
+      case Crop.mustardSeeds:
+        return "Mustard Seeds";
+      case Crop.frenchBeans:
+        return "French Beans";
+      case Crop.npk421:
+        return "NPK 4:2:1 fertilizer";
+      case Crop.npk222:
+        return "NPK 2:2:2 fertilizer";
     }
   }
 
   @override
+  State<TaskList> createState() => _TaskListState();
+}
+
+class _TaskListState extends State<TaskList> {
+  void _onItemAmountSet(double amount, Crop crop) {
+    setState(() {
+      widget.amounts.addEntries({crop: amount}.entries);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    var pieChart = PieChart(
+          dataMap: {
+            for (var crop in Crop.values) widget.cropName(crop): widget.amounts[crop]!
+          },
+          chartRadius: 180.0,
+        );
     return Column(
       children: [
         Container(
@@ -56,12 +60,7 @@ class _TaskListState extends State<TaskList> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        PieChart(
-          dataMap: {
-            for (var crop in Crop.values) cropName(crop): _amounts[crop]!
-          },
-          chartRadius: 180.0,
-        ),
+        pieChart,
         Expanded(
           child: ListView.builder(
             itemCount: Crop.values.length,
@@ -71,7 +70,7 @@ class _TaskListState extends State<TaskList> {
                   showDialog(
                       context: context,
                       builder: (context) {
-                        double amount = _amounts[Crop.values[index]]!;
+                        double amount = widget.amounts[Crop.values[index]]!;
                         return AlertDialog(
                           title: const Text("Enter area (acres)"),
                           content: Column(
@@ -106,13 +105,21 @@ class _TaskListState extends State<TaskList> {
                   leading: CircleAvatar(
                     child: Text('${index + 1}'),
                   ),
-                  title: Text(cropName(Crop.values[index])),
-                  trailing: Text("${_amounts[Crop.values[index]]} Acres"),
+                  title: Text(widget.cropName(Crop.values[index])),
+                  trailing:
+                      Text("${widget.amounts[Crop.values[index]]} Acres"),
                 ),
               );
             },
           ),
         ),
+        TextButton(
+            child: const Text("Confirm"),
+            onPressed: () {
+              widget.onRatioUpdate(widget.amounts);
+              Navigator.pop(context);
+            },
+          ),
       ],
     );
   }

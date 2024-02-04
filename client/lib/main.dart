@@ -1,6 +1,4 @@
-import 'package:animations/animations.dart';
 import 'package:exseed/grid.dart';
-import 'package:exseed/tasklist.dart';
 import 'package:flutter/material.dart';
 import 'package:exseed/recommendations.dart';
 import 'package:exseed/soil.dart';
@@ -43,13 +41,19 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
+  late Map<Crop, double> amounts;
 
-  final List<Widget> _children = [
-    const CropsPage(),
-    const TaskList(),
-    const Soil(progress: 100),
-    const Recommendations(),
-  ];
+  _MyHomePageState() {
+    crops = CropsPage();
+    soil = Soil(output: SoilOutput(N: 0.0, P: 0.0, K: 0.0, progress: 0.0));
+    rec = Recommendations();
+    amounts =
+        Map.fromIterables(Crop.values, List.filled(Crop.values.length, 0));
+  }
+
+  late CropsPage crops;
+  late Soil soil;
+  late Recommendations rec;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -57,24 +61,49 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  SoilOutput calculateSoil(List<CropCell> cells) {
+    double N = 0.0;
+    double P = 0.0;
+    double K = 0.0;
+    for (var cell in cells) {
+      cell.amounts.forEach((crop, amount) {
+        var nutrients = nutrientsTable.firstWhere((e) => e.ty == crop);
+        N += nutrients.nitrogen * amount;
+        P += nutrients.phosphorus * amount;
+        K += nutrients.potassium * amount;
+      });
+    }
+
+    return SoilOutput(
+      N: N,
+      P: P,
+      K: K,
+      progress: 100.0,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    var selected;
+    if (_selectedIndex == 0) {
+      selected = crops;
+    } else if (_selectedIndex == 1) {
+      selected = Soil(output: calculateSoil(crops.widgets));
+    } else if (_selectedIndex == 2) {
+      selected = rec;
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: _children[_selectedIndex],
+      body: selected,
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.nature_outlined),
             label: 'My Crops',
-            backgroundColor: Color(0xFFA1887F),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.checklist_outlined),
-            label: 'Tasks',
             backgroundColor: Color(0xFFA1887F),
           ),
           BottomNavigationBarItem(
@@ -88,9 +117,11 @@ class _MyHomePageState extends State<MyHomePage> {
             backgroundColor: Color(0xFFA1887F),
           ),
         ],
+        type: BottomNavigationBarType.fixed,
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.teal,
-        unselectedItemColor: Colors.white,
+        unselectedItemColor: Colors.black,
+        backgroundColor: Color(0xFFA1887F),
         onTap: _onItemTapped,
       ),
     );
