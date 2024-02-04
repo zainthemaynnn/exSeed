@@ -62,18 +62,18 @@ class _Soil extends State<Soil> {
                     sizeUnit: GaugeSizeUnit.factor,
                   ),
                 ],
-                annotations: <GaugeAnnotation>[
+                annotations: const <GaugeAnnotation>[
                   GaugeAnnotation(
                     positionFactor: 0.1,
                     angle: 90,
-                    widget: Text(
+                    /*widget: Text(
                       '${_progress.toStringAsFixed(0)}%',
                       style: const TextStyle(fontSize: 14, color: Colors.black),
-                    ),
-                  /*  widget: Image(
-                      image: AssetImage('assets/logo.png'),
-                      width: 50,
-                      height: 50,)*/
+                    ),*/
+                    widget: Image(
+                      image: AssetImage('assets/logo-t.png'),
+                      width: 400,
+                      height: 400,)
                   )
                 ]
               )
