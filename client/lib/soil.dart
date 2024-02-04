@@ -68,7 +68,7 @@ class _Soil extends State<Soil> {
                     angle: 90,
                     /*widget: Text(
                       '${_progress.toStringAsFixed(0)}%',
-                      style: const TextStyle(fontSize: 14, color: Colors.black),
+                      style: const TextStyle(fontSize: 32, color: Colors.black),
                     ),*/
                     widget: Image(
                       image: AssetImage('assets/logo-t.png'),
