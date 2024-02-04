@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:exseed/recommendations.dart';
 import 'package:exseed/tasklist.dart';
 import 'package:exseed/soil.dart';
+//firebase
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
