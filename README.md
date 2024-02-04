@@ -7,7 +7,7 @@ Made with Google's [Flutter](https://docs.flutter.dev/) for the [2024 Solution C
 
 ## Contributors
 
-Developed by [Zain Azam](https://github.com/zainthemaynnn), [Rongbin Gu](https://github.com/Rongbin99), [Maheer Huq](), and [Akash Ahilan]().
+Developed by [Zain Azam](https://github.com/zainthemaynnn), [Rongbin Gu](https://github.com/Rongbin99), [Maheer Huq](https://github.com/Maheer96), and [Akash Ahilan]().
 
 ## Contributing
 
