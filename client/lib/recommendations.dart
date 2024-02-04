@@ -20,25 +20,15 @@ class Recommendations extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Recommendations'),
-          backgroundColor: const Color(0xFFA1887F),
-          centerTitle: true,
-        ),
-        body: ListView.builder(
-          itemCount: Random().nextInt(6),
-          itemBuilder: (BuildContext context, int index) {
-            return Container(
-              height: 50,
-              color: Colors.greenAccent[100],
-              child: Center(child: Text(options[Random().nextInt(max)]))
-            );
-          },
-        )
-      )
+    return ListView.builder(
+      itemCount: Random().nextInt(6),
+      itemBuilder: (BuildContext context, int index) {
+        return Container(
+          height: 50,
+          color: Colors.greenAccent[100],
+          child: Center(child: Text(options[Random().nextInt(max)]))
+        );
+      },
     );
   }
 }
