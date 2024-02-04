@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "238435070295",
+    "project_id": "exseed-2024-d2f89",
+    "storage_bucket": "exseed-2024-d2f89.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:238435070295:android:68fa217d9370c640f50e12",
+        "android_client_info": {
+          "package_name": "com.example.exseed"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRKSe2GLuEq-AKerDOrMVSPOHfxNst3yA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
