@@ -3,7 +3,6 @@ import 'package:exseed/grid.dart';
 import 'package:exseed/tasklist.dart';
 import 'package:flutter/material.dart';
 import 'package:exseed/recommendations.dart';
-import 'package:exseed/tasklist.dart';
 import 'package:exseed/soil.dart';
 //firebase
 import 'package:firebase_core/firebase_core.dart';
