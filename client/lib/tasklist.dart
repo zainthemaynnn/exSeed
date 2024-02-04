@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class TaskList extends StatelessWidget {
+  const TaskList({super.key, required String title});
+
  @override
   Widget build(BuildContext context) {
     // Create a Scaffold widget to provide a default app bar and body
@@ -11,7 +13,7 @@ class TaskList extends StatelessWidget {
             height: 50,
           ),
           // Center the "Task List" heading both horizontally and vertically
-          Center(
+          const Center(
             child: Text(
               'Monthly Crop Choices',
               style: TextStyle(
