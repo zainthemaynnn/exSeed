@@ -5,7 +5,7 @@
 
 Pitch: [https://www.canva.com/design/DAF72Wo_uR0/1INmJqnHIcjPdgCiPeftWg/view?utm_content=DAF72Wo_uR0&utm_campaign=designshare&utm_medium=link&utm_source=editor](https://www.canva.com/design/DAF72Wo_uR0/1INmJqnHIcjPdgCiPeftWg/view?utm_content=DAF72Wo_uR0&utm_campaign=designshare&utm_medium=link&utm_source=editor)
 
-DevPost: https://devpost.com/software/exseed](https://devpost.com/software/exseed)
+DevPost: [https://devpost.com/software/exseed](https://devpost.com/software/exseed)
 
 Made with Google's [Flutter](https://docs.flutter.dev/) product and programmed in [Dart](https://dart.dev/) for the [2024 Solution Challenge](https://developers.google.com/community/gdsc-solution-challenge)
 
