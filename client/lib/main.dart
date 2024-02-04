@@ -147,7 +147,7 @@ class _MyHomePageState extends State<MyHomePage> {
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.teal,
         unselectedItemColor: Colors.black,
-        backgroundColor: Color(0xFFA1887F),
+        backgroundColor: const Color(0xFFA1887F),
         onTap: _onItemTapped,
       ),
     );
