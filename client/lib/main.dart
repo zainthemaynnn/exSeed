@@ -1,4 +1,5 @@
 import 'package:animations/animations.dart';
+import 'package:exseed/grid.dart';
 import 'package:exseed/tasklist.dart';
 import 'package:flutter/material.dart';
 import 'package:exseed/recommendations.dart';
@@ -42,6 +43,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
+  final List<Widget> _children = [
+    const CropsPage(),
+    const TaskList(),
+    const Soil(progress: 100),
+    const Recommendations(),
+  ];
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -55,21 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: PageTransitionSwitcher(
-        transitionBuilder: (
-          Widget child,
-          Animation<double> primaryAnimation,
-          Animation<double> secondaryAnimation,
-        ) {
-          return SharedAxisTransition(
-            animation: primaryAnimation,
-            secondaryAnimation: secondaryAnimation,
-            transitionType: SharedAxisTransitionType.horizontal,
-            child: child,
-          );
-        },
-        child: Container(),
-      ),
+      body: _children[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(

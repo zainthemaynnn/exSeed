@@ -16,7 +16,7 @@ final List<String> options = <String>[
   ];
 
 class Recommendations extends StatelessWidget {
-  const Recommendations({super.key, required String title});
+  const Recommendations({super.key});
 
   @override
   Widget build(BuildContext context) {

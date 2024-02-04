@@ -1,27 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
-import 'package:recase/recase.dart';
-import 'package:sqflite/sqflite.dart';
 
 class CropsPage extends StatefulWidget {
-  const CropsPage({super.key, required this.title});
-
-  final String title;
-
-  Future<void> createCropsDb(Crop crop) async {
-    WidgetsFlutterBinding.ensureInitialized();
-    final database = openDatabase(
-      join(await getDatabasesPath(), "exSeed.db"),
-      onCreate: ((db, version) {
-        return db.execute(
-          """CREATE TABLE IF NOT EXISTS crops(
-                id INTEGER PRIMARY KEY,
-                crop TEXT CHECK( crop IN ('r','c','s','w'),
-              ))""",
-        );
-      }),
-    );
-  }
+  const CropsPage({super.key});
 
   @override
   State<CropsPage> createState() => _CropsState();

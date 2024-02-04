@@ -4,7 +4,7 @@ import 'package:syncfusion_flutter_gauges/gauges.dart';
 class Soil extends StatefulWidget {
   final double progress;
 
-  const Soil({super.key, required this.progress, required String title});
+  const Soil({super.key, required this.progress});
 
   @override
   _Soil createState() => _Soil();
