@@ -23,6 +23,9 @@ class _Soil extends State<Soil> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Container(
+          height: 40,
+        ),
     
         Center(
           child: Text('Soil Health: ${_progress.toStringAsFixed(0)}%', style: const TextStyle(
@@ -31,6 +34,10 @@ class _Soil extends State<Soil> {
             color: Colors.black,
             overflow: TextOverflow.ellipsis
           ),),
+        ),
+
+        Container(
+          height: 40,
         ),
 
         Expanded(
@@ -42,16 +49,15 @@ class _Soil extends State<Soil> {
                 showLabels: false,
                 showTicks: false,
                 axisLineStyle: const AxisLineStyle(
-                  thickness: 0.2,
+                  thickness: 0.25,
                   cornerStyle: CornerStyle.bothCurve,
-                //  color: Colors.greenAccent[100],
                   thicknessUnit: GaugeSizeUnit.factor,
                 ),
                 pointers: <GaugePointer>[
                   RangePointer(
                     value: _progress,
                     cornerStyle: CornerStyle.bothCurve,
-                    width: 0.2,
+                    width: 0.25,
                     color: Colors.greenAccent[100],
                     sizeUnit: GaugeSizeUnit.factor,
                   ),
@@ -64,6 +70,10 @@ class _Soil extends State<Soil> {
                       '${_progress.toStringAsFixed(0)}%',
                       style: const TextStyle(fontSize: 14, color: Colors.black),
                     ),
+                  /*  widget: Image(
+                      image: AssetImage('assets/logo.png'),
+                      width: 50,
+                      height: 50,)*/
                   )
                 ]
               )
