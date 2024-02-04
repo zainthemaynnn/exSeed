@@ -28,7 +28,7 @@ class Recommendations extends StatelessWidget {
           centerTitle: true,
         ),
         body: ListView.builder(
-          itemCount: options.length,
+          itemCount: Random().nextInt(6),
           itemBuilder: (BuildContext context, int index) {
             return Container(
               height: 50,
